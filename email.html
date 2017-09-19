@@ -1,0 +1,75 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		a { word-break: break-word; }
+		a img { border:none; }
+		img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; }
+		body { width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+		img.avatar { width:2m; height: 4em; border-radius: 4em; padding: 1ex; }
+
+
+		table#main {
+			background-color: white;
+			width: 560px;
+			border-radius: 8px;
+		}
+	    #contents {
+	        color:#505050;
+	        font-family:Helvetica, Arial, sans-serif;
+	        font-size:14px;
+	        line-height:125%;
+	    }
+	    .logo {
+			color:#505050;
+	        font-family:Helvetica, Arial, sans-serif;
+	        font-size:16px;
+	        line-height:125%;
+	        vertical-align: middle;
+	    }
+	    .message {
+	    	border-left: 4px solid #6cc7de;
+	    	margin: 14px;
+	    	padding: 14px;
+	    	text-align: left;
+	    }
+	    @media only screen and (max-width: 480px){
+	        .emailImage{
+	            height:auto !important;
+	            max-width:560px !important;
+	            width: 100% !important;
+	        }
+	        #contents{font-size:16px !important;}
+			table#main{
+				width: 480px !important;
+			}
+	        .emailButton{
+	            max-width:560px !important;
+	            width:100% !important;
+	        }
+	        .emailButton a{
+	            display:block !important;
+	            font-size:18px !important;
+	        }
+	    }
+	</style>
+</head>
+<body bgcolor="#eeeeee">
+	<table id="main" width="560" align="center">
+		<tr><td><img src="/img/email/20.png" width="20" height="20"></td><td><img src="/img/email/20.png" width="20" height="20"></td><td></td><td></td></tr>
+		<tr><td></td><td class="logo" valign="middle" colspan="2"><center><img src="{{site.fullUrl}}logo" align="absmiddle" width="200"></center></td><td></td></tr>
+		<tr><td><img src="/img/email/20.png" width="20" height="20"></td><td></td><td></td><td></td></tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div id="contents">
+					{{> (contents)}}
+				</div>
+			</td>
+			<td></td>
+		</tr>
+		<tr><td></td><td></td><td></td><td><img src="/img/email/20.png" width="20" height="20"></td></tr>
+	</table>
+</body>
+</html>

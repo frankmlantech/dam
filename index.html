@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name = "viewport" content = "width = device-width">
+
+		<link rel="stylesheet" href="{{site.url}}/css/main.scss" />
+
+		<link rel="icon" type="image/png" href="{{site.url}}/img/favicons/favicon.png">
+		<link rel="shortcut icon" href="{{site.url}}/img/favicons/favicon.ico">
+		<link rel="apple-touch-icon" href="{{site.url}}/img/favicons/touch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="{{site.url}}/img/favicons/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="{{site.url}}/img/favicons/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="{{site.url}}/img/favicons/touch-icon-ipad-retina.png">
+		<link rel="mask-icon" color="#457EA6" href="{{site.url}}/img/favicons/pin_mask.svg">
+
+		<title>{{#if description}}{{description}} | {{/if}}Shared by {{publisher.description}}</title>
+
+	</head>
+	<body>
+
+		{{#if debug}}
+		<div id="dev-mode">
+			<div id="dev-mode-banner">Dev Mode</div>
+		</div>
+		{{/if}}
+
+		<div class="main">
+
+			<!-- Top bar -->
+			<div class="topbar">
+				<div class="logo">
+					<a href="{{site.url}}"><img src="{{site.url}}logo"></a>
+				</div>
+				<div class="search">
+					<form method="get" action="{{searchUrl}}" class="searchbox">
+						<a href="#" onclick="document.forms[0].submit();return false;" title="Search">
+							{{svg "img/icons/search.svg" class="icon search"}}
+						</a>
+						<input type="text" placeholder="Search..." name="q" value="{{searchTerm}}">
+					</form>
+				</div>
+			</div>
+
+			<div class="toolbar">
+				<div class="crumbs {{#if file}}full-size{{/if}}">
+					<div class="crumbs-previous">
+						{{#unless file}}
+						{{#if currentCrumb}}
+						{{svg "img/icons/small-arrow.svg" class="crumb-icon"}}
+							{{#if crumbs}}
+								{{#each crumbs}}
+									{{#if @last}}<a href="{{url}}">{{name}}</a>{{/if}}
+								{{/each}}
+							{{else}}
+								<a href="{{site.url}}">{{description}}</a>
+							{{/if}}
+						{{/if}}
+						{{/unless}}
+					</div>
+					<div class="crumbs-current large-font">
+						{{#if currentCrumb}}
+							{{currentCrumb.name}}
+						{{else}}
+							{{description}}
+						{{/if}}
+					</div>
+				</div>
+
+				<div class="tools">
+					{{#unless file}}
+					<div class="asset-filters">
+						<div class="mobile-dropdown" onclick="methods.toggleFilterDD(this);">Filters{{svg "img/icons/small-arrow.svg" class="filters-arrow"}}</div>
+						<div class="filter filter-on filter-folder" data-type="folder" data-index="0" onclick="methods.filterToggle(this, 'folder', 0)">
+							<div class="filter-icon"></div>
+							<div class="filter-label small-font">Folders</div>
+						</div>
+						<div class="filter filter-on filter-document" data-type="document" data-index="1" onclick="methods.filterToggle(this, 'document', 1)">
+							<div class="filter-icon"></div>
+							<div class="filter-label small-font">documents</div>
+						</div>
+						<div class="filter filter-on filter-image" data-type="image" data-index="2" onclick="methods.filterToggle(this, 'image', 2)">
+							<div class="filter-icon"></div>
+							<div class="filter-label small-font">Images</div>
+						</div>
+						<div class="filter filter-on filter-video" data-type="video" data-index="3" onclick="methods.filterToggle(this, 'video', 3)">
+							<div class="filter-icon"></div>
+							<div class="filter-label small-font">Video/Audio</div>
+						</div>
+					</div>
+					<div class="download-all">
+						{{#if canDownloadAll}}
+							{{#if downloadAllReady}}
+							<a href="{{downloadAllUrl}}" title="Download All">
+								{{svg "img/icons/download.svg" class="icon"}}
+								<div class="download-label small-font">Download All <br/>({{friendlysize downloadAllSize}})</div>
+							</a>
+							{{else}}
+							<a href="#" title="Download All">
+								{{svg "img/icons/download.svg" class="icon disabled"}}
+								<div class="download-label small-font">Download All <br/>(Preparing)</div>
+							</a>
+							{{/if}}
+						{{/if}}
+					</div>
+
+					{{else}}
+					<div class="close-file" onclick="window.history.back();">
+						{{svg "img/icons/close.svg" class="icon icon-hover"}}
+					</div>
+					{{/unless}}
+				</div>
+			</div>
+
+			<!-- contents / thumbnails -->
+			<div class="contents">
+
+				{{> (contents)}}
+
+				<!-- <div class="plug">
+					<a href="https://www.thirdlight.com" target="_blank">Chorus by Third Light</a>
+				</div> -->
+			</div>
+
+		</div>
+
+
+		{{#if canDownloadAll}}
+		{{#unless downloadAllReady}}
+			<script type="text/JavaScript">
+
+				var dlcheck = setInterval(function(){
+					var request = new XMLHttpRequest();
+					request.open('GET', '{{site.url}}?json', true);
+					request.onload = function() {
+						if (request.status >= 200 && request.status < 400) {
+							var data = JSON.parse(request.responseText);
+							if( data.downloadAllReady ){
+								document.location = document.location + "?reload";
+								clearInterval(dlcheck);
+							}
+						}
+					};
+					request.onerror = function() { };
+					request.send();
+				},2000);
+
+			</script>
+		{{/unless}}
+		{{/if}}
+
+		<script type="text/JavaScript">
+			var currLoc;
+			{{#if folder}}
+				{{#if searchIsEmpty}}
+					currLoc = '';
+				{{else}}
+					{{#if searchTerm}}
+						currLoc = '{{searchUrl}}?q={{searchTerm}}&json';
+					{{else}}
+						currLoc = '{{folder.url}}?json';
+					{{/if}}
+				{{/if}}
+			{{else}}
+				currLoc = '{{site.url}}?json';
+			{{/if}}
+			{{#if file}}
+				currLoc = '';
+			{{/if}}
+		</script>
+
+		<script type="application/javascript" src="{{site.url}}js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,31 @@
+{
+	"description": "A theme designed to show Chorus files and folders in a gallery.",
+	"partials": {
+		"file": "pages/file.html",
+		"folder": "pages/folder.html",
+		"index": "index.html",
+		"license": "errors/license.html",
+		"login": "errors/login.html",
+		"not-ready": "errors/not-ready.html",
+		"deleted": "errors/deleted.html",
+		"embargoed": "errors/embargoed.html",
+		"expired": "errors/expired.html",
+		"audio": "assets/audio.html",
+		"document": "assets/document.html",
+		"image": "assets/image.html",
+		"video": "assets/video.html",
+		"404": "errors/404.html",
+		"folder-not-found": "errors/folder-not-found.html",
+		"file-not-found": "errors/file-not-found.html",
+		"download-not-found": "errors/download-not-found.html",
+		"download-not-ready": "errors/download-not-ready.html",
+		"new-publish-link-html": "emails/new-publish-link.html",
+		"new-publish-link-txt": "emails/new-publish-link.txt",
+		"auth-token-html": "emails/auth-token.html",
+		"auth-token-txt": "emails/auth-token.txt"
+	},
+	"customColors": [
+	],
+	"serveJson": true,
+	"debug":false
+}

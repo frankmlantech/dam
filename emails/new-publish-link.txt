@@ -1,0 +1,7 @@
+subject: "{{publisher.name}} has shared some files with you..."
+---
+{{publisher.description}} has shared {{#if description}}'{{description}}'{{else}}some files{{/if}} with you...
+{{#if message}}
+{{message}}{{/if}}
+
+View Now: {{site.authenticatedUrl}}

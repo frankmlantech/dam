@@ -1,0 +1,71 @@
+{{#if searchIsEmpty}}
+	No Results for "{{searchTerm}}"
+{{else}}
+
+	<div id="no-assets">No files or folders to show</div>
+
+	<div id="asset-view">
+		<div class="view-topbar">
+			<div id="view-title" class="large-font"></div>
+			<div id="view-tools">
+				<ul>
+					<a href="#"><li id="view-open" class="view-topbar-button"><div class="topbar-button-label">Open</div> {{svg "img/icons/view.svg" class="icon"}}</li></a>
+					<a href="#"><li id="view-download" class="view-topbar-button"><div class="topbar-button-label"></div> {{svg "img/icons/download.svg" class="icon"}}</li></a>
+				</ul>
+				{{svg "img/icons/close.svg" class="icon view-close icon-hover" onclick="var s = document.body.scrollTop; window.location.hash = ''; document.body.scrollTop = s;"}}
+			</div>
+		</div>
+		<div class="view-content">
+			<div id="view-file">
+				<div class="view-file-container">
+					<div class="view-file-placeholder"></div>
+					<div id="view-file-preview"></div>
+					<div class="view-file-arrows">{{svg "img/icons/arrow.svg" class="icon view-arrows left-arrow" onclick="methods.prevAsset()"}}{{svg "img/icons/arrow.svg" class="icon right-arrow view-arrows"onclick="methods.nextAsset()"}}</div>
+				</div>
+			</div>
+			<div id="view-seperator"><div id="view-seperator-hitbox"></div></div>
+			<div id="view-data">
+				<ul id="view-data-list"></ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="asset-view-shade"></div>
+
+
+
+	<div class="assets">
+
+		{{#each folders}}
+			{{#if subTreeDirSize}}
+				<div class="asset folder">
+					<a href="{{url}}">
+						<div class="asset-thumb" data-src="{{thumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
+						<div class="asset-info">
+							<div class="name">
+								{{name}}
+								<span class="small-font">{{fileCount}} item(s)</span>
+							</div>
+							{{svg "img/icons/folder.svg" class="icon asset-icon icon-hover"}}
+						</div>
+						<div class="asset-colour"></div>
+					</a>
+				</div>
+			{{/if}}
+		{{/each}}
+
+		{{#each files}}
+				<div class="asset {{#if isDocument}}document{{/if}} {{#if isImage}}image{{/if}} {{#if isVideo}}video{{/if}} {{#if isAudio}}video{{/if}}" onclick="window.location.hash = 'id={{@index}}';">
+					<div class="asset-thumb" data-src="{{smallThumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
+					<div class="asset-info">
+						<div class="name">
+							{{name}}
+							<span class="small-font">{{fileType}}</span>
+						</div>
+					</div>
+					<div class="asset-colour"></div>
+				</div>
+		{{/each}}
+
+	</div>
+{{/if}}

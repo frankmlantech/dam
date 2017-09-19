@@ -1,0 +1,27 @@
+subject: "{{publisher.name}} has shared some files with you..."
+---
+<center>
+	<p><img src="{{publisher.avatarUrl}}" class="avatar"><br>
+		<b>{{publisher.description}}</b> has shared
+		{{#if description}}<b>“{{description}}”</b>{{else}}some files{{/if}} with you...
+	</p>
+	<br>
+	{{#if message}}<table  border="0" cellpadding="0" cellspacing="0"  class="message"><tr><td>{{#markdown}}{{message}}{{/markdown}}<td><tr></table>{{/if}}
+
+	<br>
+	<table border="0" cellpadding="0" cellspacing="0" class="emailButton" style="border-radius:3px; background-color:#6DC6DD;">
+	    <tr>
+	        <td align="center" valign="middle" class="emailButtonContent" style="padding-top:15px; padding-right:30px; padding-bottom:15px; padding-left:30px;">
+	            <a href="{{site.authenticatedUrl}}" target="_blank" style="color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:16px; font-weight:bold; text-decoration:none;">View Now</a>
+	        </td>
+	    </tr>
+	</table>
+	<br>
+
+	{{#for folders start=0 limit=10}}
+		<div><a href="{{site.authenticatedUrl}}" target="_blank"><img src="{{thumbUrl}}" width="400"/></a></div>
+	{{/for}}
+	{{#for files start=0 limit=10}}
+		<div><a href="{{site.authenticatedUrl}}" target="_blank"><img src="{{thumbUrl}}" width="400"/></a></div>
+	{{/for}}
+</center>

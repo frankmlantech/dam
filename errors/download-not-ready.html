@@ -1,0 +1,16 @@
+{{#if canDownloadAll}}
+	<h1 class="icon spin">{{svg "img/icons/loading.svg" title="Warning" class="warning"}} <span id="h1">Download not ready</span></h1>
+	<p id="p">The zip file is still being created.</p>
+	<script type="text/JavaScript">
+		setTimeout(function(){
+			document.location.search = "?"+Math.floor(Math.random() * 65536)
+			setTimeout(function(){
+				document.getElementById('h1').innerHTML = "DONE!";
+				document.getElementById('p').innerHTML = "Your files should now be downloading...";
+			},1000);
+		},3000);
+	</script>
+{{else}}
+	<h1>{{svg "img/icons/warning.svg" title="Warning" class="warning"}} Download not found</h1>
+	<p>It may have been deleted.</p>
+{{/if}}

@@ -1,0 +1,27 @@
+title:"Link not ready"
+---
+<h1 class="icon spin">{{svg "img/icons/loading.svg" title="Warning" class="warning"}} Link not ready</h1>
+<p>This link is still being published.</p>
+
+<script type="text/JavaScript">
+	var dlcheck = setInterval(function(){
+		var request = new XMLHttpRequest();
+		request.open('GET', '{{site.url}}?json', true);
+
+		request.onload = function() {
+			if (request.status >= 200 && request.status < 400) {
+				var data = JSON.parse(request.responseText);
+				if( data.contents != "not-ready"  ){
+					document.location = document.location + "?reload";
+					clearInterval(dlcheck);
+				}
+			}
+		};
+
+		request.onerror = function() {
+
+		};
+
+		request.send();
+	},2000);
+</script>

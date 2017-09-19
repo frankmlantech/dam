@@ -1,0 +1,75 @@
+title:"Chorus"
+---
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name = "viewport" content = "width = device-width">
+
+		<link rel="stylesheet" href="{{site.url}}/css/main.scss" />
+		<link rel="icon" type="image/png" href="{{site.url}}/img/favicons/favicon.png">
+		<link rel="shortcut icon" href="{{site.url}}/img/favicons/favicon.ico">
+		<link rel="apple-touch-icon" href="{{site.url}}/img/favicons/touch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="{{site.url}}/img/favicons/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="{{site.url}}/img/favicons/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="{{site.url}}/img/favicons/touch-icon-ipad-retina.png">
+		<link rel="mask-icon" color="#457EA6" href="{{site.url}}/img/favicons/pin_mask.svg">
+
+		<title>{{title}}</title>
+	</head>
+	<body>
+
+		<div class="main">
+
+			<!-- Top bar -->
+			<div class="topbar">
+				<div class="logo">
+					<a href="{{site.url}}"><img src="{{site.url}}logo"></a>
+				</div>
+				<div class="search">
+					<form method="get" action="{{searchUrl}}" class="searchbox">
+						<a href="#" onclick="document.forms[0].submit();return false;" title="Search">
+							{{svg "img/icons/search.svg" class="icon search"}}
+						</a>
+						<input type="text" placeholder="Search..." name="q" value="{{searchTerm}}">
+					</form>
+				</div>
+			</div>
+
+			<div class="toolbar">
+				<div class="crumbs">
+					<div class="crumbs-previous">
+						{{#if currentCrumb}}
+						{{svg "img/icons/small-arrow.svg" class="crumb-icon"}}
+							{{#if crumbs}}
+								{{#each crumbs}}
+									{{#if @last}}<a href="{{url}}">{{name}}</a>{{/if}}
+								{{/each}}
+							{{else}}
+								<a href="{{site.url}}">{{description}}</a>
+							{{/if}}
+						{{/if}}
+					</div>
+					<div class="crumbs-current large-font">
+						{{#if currentCrumb}}
+							{{currentCrumb.name}}
+						{{else}}
+							{{description}}
+						{{/if}}
+					</div>
+				</div>
+			</div>
+
+			<!-- contents / thumbnails -->
+			<div class="contents">
+
+				<div class="invalid">
+					{{> (contents)}}
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+</html>

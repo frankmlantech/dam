@@ -1,0 +1,3 @@
+Here is the new link you requested
+
+{{site.authenticatedUrl}}

@@ -1,0 +1,194 @@
+//
+// _fonts.scss
+//
+
+// Note to theme creators:
+// -----------------------
+// This file has been created to make it easy to change the base fonts.
+//
+// Override this file to add a custom font, or change a font size.
+//
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 100;
+  font-style: normal;
+  src: url('fonts/MuseoSans_100/MuseoSans_100-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_100/MuseoSans_100-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 100;
+  font-style: italic;
+  src: url('fonts/MuseoSans_100_italic/MuseoSans_100_Italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_100_italic/MuseoSans_100_Italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 300;
+  font-style: normal;
+  src: url('fonts/MuseoSans_300/MuseoSans_300-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_300/MuseoSans_300-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 300;
+  font-style: italic;
+  src: url('fonts/MuseoSans_300_italic/MuseoSans_300_Italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_300_italic/MuseoSans_300_Italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 500;
+  font-style: normal;
+  src: url('fonts/MuseoSans_500/MuseoSans_500-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_500/MuseoSans_500-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 500;
+  font-style: italic;
+  src: url('fonts/MuseoSans_500_italic/MuseoSans_500_Italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_500_italic/MuseoSans_500_Italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/MuseoSans_700/MuseoSans_700-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_700/MuseoSans_700-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 700;
+  font-style: italic;
+  src: url('fonts/MuseoSans_700_italic/MuseoSans_700_Italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_700_italic/MuseoSans_700_Italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 900;
+  font-style: normal;
+  src: url('fonts/MuseoSans_900/MuseoSans_900-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_900/MuseoSans_900-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSans;
+  font-weight: 900;
+  font-style: italic;
+  src: url('fonts/MuseoSans_900_italic/MuseoSans_900_Italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSans_900_italic/MuseoSans_900_Italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 100;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_100/Museo_Slab_100-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_100/Museo_Slab_100-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 100;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_100_italic/Museo_Slab_100italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_100_italic/Museo_Slab_100italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 300;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_300/Museo_Slab_300-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_300/Museo_Slab_300-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 300;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_300_italic/Museo_Slab_300italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_300_italic/Museo_Slab_300italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 500;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_500/Museo_Slab_500-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_500/Museo_Slab_500-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 500;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_500_italic/Museo_Slab_500italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_500_italic/Museo_Slab_500italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_700/Museo_Slab_700-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_700/Museo_Slab_700-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 700;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_700_italic/Museo_Slab_700italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_700_italic/Museo_Slab_700italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 900;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_900/Museo_Slab_900-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_900/Museo_Slab_900-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 900;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_900_italic/Museo_Slab_900italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_900_italic/Museo_Slab_900italic-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 1000;
+  font-style: normal;
+  src: url('fonts/MuseoSlab_1000/Museo_Slab_1000-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_1000/Museo_Slab_1000-webfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MuseoSlab;
+  font-weight: 1000;
+  font-style: italic;
+  src: url('fonts/MuseoSlab_1000_italic/Museo_Slab_1000italic-webfont.woff') format('woff'),
+       url('fonts/MuseoSlab_1000_italic/Museo_Slab_1000italic-webfont.ttf') format('truetype');
+}
+
+$font-family: "MuseoSans", Museo Sans, Gill Sans, Helvetica, San Serif;
+$input-font-family: "MuseoSlab", Museo Sans, Gill Sans, Helvetica, San Serif;
+
+html, body {
+  // see http://clagnut.com/sandbox/css3/
+  font-feature-settings:"onum" 1, "pnum" 1, "frac" 1, "kern" 1, "liga" 1, "dlig" 1;
+}
