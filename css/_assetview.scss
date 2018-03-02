@@ -152,39 +152,47 @@
 						}
 					}
 				}
-				.view-file-arrows{
-					position: absolute;
-					top: calc(50% - 23px);
-					left: -10px;
-					width: calc(100% + 20px);
-					height: 46px;
-					.icon{
-						position: absolute;
-						height: 100%;
-						width: 46px;
-						left: 0px;
-						padding: 13px;
-						border-radius: 3px;
-						background-color: $grey-color;
-						opacity: 0.85;
-						cursor: pointer;
-						path{
-							fill: $light-grey-color;
-						}
-						&.right-arrow{
-							left: auto;
-							right: 0px;
-							transform: rotate(180deg);
 
-						}
-						&:hover{
-							background-color: lighten($grey-color, 5%);
-						}
-						&.disabled{
-							display: none;
-						}
+				$arrowSize: 46px;
+
+				@mixin arrow-holder($size) {
+					position: absolute;
+					top: calc(50% - #{$size/2});
+					width: $size;
+					height: $size;
+					cursor: pointer;
+					border-radius: 3px;
+					background-color: $grey-color;
+					opacity: 0.85;
+
+					&.disabled {
+						display: none;
+					}
+					&:hover{
+						background-color: lighten($grey-color, 5%);
 					}
 				}
+				#view-file-left-arrow {
+					@include arrow-holder($arrowSize);
+					left: -10px;
+				}
+				#view-file-right-arrow {
+					@include arrow-holder($arrowSize);
+					right: -10px;
+				}
+				.view-arrow {
+					position: relative;
+					height: $arrowSize;
+					width: $arrowSize;
+					padding: 13px;
+					path{
+						fill: $light-grey-color;
+					}
+					&.right-arrow{
+						transform: rotate(180deg);
+					}
+				}
+
 			}
 		}
 		#view-seperator{

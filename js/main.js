@@ -58,8 +58,8 @@ var helpers = {
 	filePreview: document.getElementById('view-file-preview'),
 	fileDownload: document.getElementById("view-download"),
 	fileOpen: document.getElementById("view-open"),
-	fileArrows: document.getElementsByClassName("view-arrows"),
-
+	fileLeftArrow: document.getElementById("view-file-left-arrow"),
+	fileRightArrow: document.getElementById("view-file-right-arrow"),
 
 	imageLoaded: function(img, asset){
 		img.onload = function(){
@@ -193,14 +193,14 @@ var methods = {
 
 	checkArrows:function(index){
 		if(index == 0){
-			helpers.addClass(helpers.fileArrows[0], 'disabled');
-		} else if(helpers.hasClass(helpers.fileArrows[0], 'disabled')){
-			helpers.removeClass(helpers.fileArrows[0], 'disabled');
+			helpers.addClass(helpers.fileLeftArrow, 'disabled');
+		} else if(helpers.hasClass(helpers.fileLeftArrow, 'disabled')){
+			helpers.removeClass(helpers.fileLeftArrow, 'disabled');
 		}
 		if(index == helpers.filesCount-1){
-			helpers.addClass(helpers.fileArrows[1], 'disabled');
-		} else if(helpers.hasClass(helpers.fileArrows[1], 'disabled')){
-			helpers.removeClass(helpers.fileArrows[1], 'disabled');
+			helpers.addClass(helpers.fileRightArrow, 'disabled');
+		} else if(helpers.hasClass(helpers.fileRightArrow, 'disabled')){
+			helpers.removeClass(helpers.fileRightArrow, 'disabled');
 		}
 	},
 

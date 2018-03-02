@@ -20,7 +20,8 @@
 				<div class="view-file-container">
 					<div class="view-file-placeholder"></div>
 					<div id="view-file-preview"></div>
-					<div class="view-file-arrows">{{svg "img/icons/arrow.svg" class="icon view-arrows left-arrow" onclick="methods.prevAsset()"}}{{svg "img/icons/arrow.svg" class="icon right-arrow view-arrows"onclick="methods.nextAsset()"}}</div>
+					<div id="view-file-left-arrow" onclick="methods.prevAsset()">{{svg "img/icons/arrow.svg" class="view-arrow"}}</div>
+					<div id="view-file-right-arrow" onclick="methods.nextAsset()">{{svg "img/icons/arrow.svg" class="view-arrow right-arrow"}}</div>
 				</div>
 			</div>
 			<div id="view-seperator"><div id="view-seperator-hitbox"></div></div>
