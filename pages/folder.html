@@ -38,21 +38,19 @@
 	<div class="assets">
 
 		{{#each folders}}
-			{{#if subTreeDirSize}}
-				<div class="asset folder">
-					<a href="{{url}}">
-						<div class="asset-thumb" data-src="{{thumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
-						<div class="asset-info">
-							<div class="name">
-								{{name}}
-								<span class="small-font">{{fileCount}} item(s)</span>
-							</div>
-							{{svg "img/icons/folder.svg" class="icon asset-icon icon-hover"}}
+			<div class="asset folder">
+				<a href="{{url}}">
+					<div class="asset-thumb" data-src="{{thumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
+					<div class="asset-info">
+						<div class="name">
+							{{name}}
+							<span class="small-font">{{fileCount}} item(s)</span>
 						</div>
-						<div class="asset-colour"></div>
-					</a>
-				</div>
-			{{/if}}
+						{{svg "img/icons/folder.svg" class="icon asset-icon icon-hover"}}
+					</div>
+					<div class="asset-colour"></div>
+				</a>
+			</div>
 		{{/each}}
 
 		{{#each files}}
