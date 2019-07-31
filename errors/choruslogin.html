@@ -12,3 +12,7 @@ title:"Login"
 	<br>
 	<div><a href="#" onclick="document.forms[0].submit();return false;" class="button">SEND</a></div>
 </form>
+
+{{#if samlEnabled }}
+<div><a href="{{ssoUrl}}" class="button">Single Sign-On</a></div>
+{{/if}}
