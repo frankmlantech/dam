@@ -10,7 +10,9 @@
 			<div id="view-tools">
 				<ul>
 					<a href="#"><li id="view-open" class="view-topbar-button"><div class="topbar-button-label">Open</div> {{svg "img/icons/view.svg" class="icon"}}</li></a>
+					{{#if canDownloadOriginals}}
 					<a href="#"><li id="view-download" class="view-topbar-button"><div class="topbar-button-label"></div> {{svg "img/icons/download.svg" class="icon"}}</li></a>
+					{{/if}}
 				</ul>
 				{{svg "img/icons/close.svg" class="icon view-close icon-hover" onclick="var s = document.body.scrollTop; window.location.hash = ''; document.body.scrollTop = s;"}}
 			</div>
@@ -38,21 +40,19 @@
 	<div class="assets">
 
 		{{#each folders}}
-			{{#if subTreeDirSize}}
-				<div class="asset folder">
-					<a href="{{url}}">
-						<div class="asset-thumb" data-src="{{thumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
-						<div class="asset-info">
-							<div class="name">
-								{{name}}
-								<span class="small-font">{{fileCount}} item(s)</span>
-							</div>
-							{{svg "img/icons/folder.svg" class="icon asset-icon icon-hover"}}
+			<div class="asset folder">
+				<a href="{{url}}">
+					<div class="asset-thumb" data-src="{{thumbUrl}}"><div class="asset-thumb-placeholder"></div></div>
+					<div class="asset-info">
+						<div class="name">
+							{{name}}
+							<span class="small-font">{{fileCount}} item(s)</span>
 						</div>
-						<div class="asset-colour"></div>
-					</a>
-				</div>
-			{{/if}}
+						{{svg "img/icons/folder.svg" class="icon asset-icon icon-hover"}}
+					</div>
+					<div class="asset-colour"></div>
+				</a>
+			</div>
 		{{/each}}
 
 		{{#each files}}

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name = "viewport" content = "width = device-width">
 
-		<link rel="stylesheet" href="{{site.url}}/css/main.scss" />
+		<link rel="stylesheet" href="{{site.url}}/css/main.scss?{{site.lastChange}}" />
 
 		<link rel="icon" type="image/png" href="{{site.url}}/img/favicons/favicon.png">
 		<link rel="shortcut icon" href="{{site.url}}/img/favicons/favicon.ico">
@@ -88,8 +88,8 @@
 							<div class="filter-label small-font">Video/Audio</div>
 						</div>
 					</div>
+					{{#if canDownloadAll}}
 					<div class="download-all">
-						{{#if canDownloadAll}}
 							{{#if downloadAllReady}}
 							<a href="{{downloadAllUrl}}" title="Download All">
 								{{svg "img/icons/download.svg" class="icon"}}
@@ -101,8 +101,8 @@
 								<div class="download-label small-font">Download All <br/>(Preparing)</div>
 							</a>
 							{{/if}}
-						{{/if}}
 					</div>
+					{{/if}}
 
 					{{else}}
 					<div class="close-file" onclick="window.history.back();">
