@@ -3,7 +3,7 @@ title:"Link not ready"
 <h1 class="icon spin">{{svg "img/icons/loading.svg" title="Warning" class="warning"}} Link not ready</h1>
 <p>This link is still being published.</p>
 
-<script type="text/JavaScript">
+<script type="text/javascript" nonce="{{scriptNonce}}">
 	var dlcheck = setInterval(function(){
 		var request = new XMLHttpRequest();
 		request.open('GET', '{{site.url}}?json', true);

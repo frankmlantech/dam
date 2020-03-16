@@ -22,10 +22,12 @@
 		"new-publish-link-html": "emails/new-publish-link.html",
 		"new-publish-link-txt": "emails/new-publish-link.txt",
 		"auth-token-html": "emails/auth-token.html",
-		"auth-token-txt": "emails/auth-token.txt"
+		"auth-token-txt": "emails/auth-token.txt",
+		"choruslogin": "errors/choruslogin.html"
 	},
 	"customColors": [
 	],
+	"csp": "default-src: 'none'; style-src 'self' DYN_STYLESRC; script-src 'self' DYN_SCRIPTSRC; img-src 'self' DYN_IMGSRC; ",
 	"serveJson": true,
 	"devMode": false
 }

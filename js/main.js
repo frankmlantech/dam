@@ -29,11 +29,11 @@ var helpers = {
 
 
 	formatBytes: function(bytes){
-		if(bytes == 0) return '0 Bytes';
+		if(bytes == 0) return '';
 		var k = 1000,
 			sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 			i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+		return '(' + parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i] + ')';
 	},
 
 
@@ -124,7 +124,7 @@ var methods = {
 
 		//update download and preview links
 		helpers.fileDownload.parentNode.href = asset.url;
-		helpers.fileDownload.children[0].innerHTML = 'Download <span class="small-font">(' + helpers.formatBytes(asset.fileSize) + ')</span>';
+		helpers.fileDownload.children[0].innerHTML = 'Download <span class="small-font">' + helpers.formatBytes(asset.fileSize) + '</span>';
 		helpers.fileOpen.parentNode.href = asset.previewUrl;
 
 		//update metadata and download link
