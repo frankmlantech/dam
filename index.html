@@ -105,6 +105,18 @@
 					{{/if}}
 
 					{{else}}
+					{{#if canDownloadOriginals}}
+					<ul>
+						<a href="{{file.url}}">
+							<li id="view-download" class="view-topbar-button">
+								<div class="topbar-button-label">Download
+									<span class="small-font">{{friendlysize file.fileSize}}</span>
+								</div>
+								{{svg "img/icons/download.svg" class="icon"}}
+							</li>
+						</a>
+					</ul>
+					{{/if}}
 					<div class="close-file">
 						{{svg "img/icons/close.svg" class="icon icon-hover"}}
 					</div>
