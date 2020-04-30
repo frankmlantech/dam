@@ -158,6 +158,55 @@
 				}
 			}
 		}
+
+		ul {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			a{
+				max-width: 150px;
+				width: 100%;
+				margin-right: 30px;
+			}
+			li{
+				list-style: none;
+				width: 100%;
+				height: 100%;
+				max-width: 150px;
+				min-width: 150px;
+				background-color: $dark-grey-color;
+				padding: 18px;
+				border-radius: 3px;
+				color: $light-grey-color;
+				display: inline-block;
+				.icon{
+					width: 26px;
+					height: 26px;
+					float: right;
+					path{
+						fill: $light-grey-color;
+					}
+				}
+				&.view-topbar-button{
+					line-height: 26px;
+					.topbar-button-label{
+						display: inline-block;
+						span{
+							display: block;
+							line-height: 6px;
+						}
+					}
+					&:hover{
+						background-color: lighten($dark-grey-color, 5%);
+					}
+					&#view-download{
+						.topbar-button-label{
+							margin-top: -5px;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
