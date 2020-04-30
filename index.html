@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name = "viewport" content = "width = device-width">
 
-		<link rel="stylesheet" href="{{site.url}}/css/main.scss" />
+		<link rel="stylesheet" href="{{site.url}}/css/main.scss?{{site.lastChange}}" />
 
 		<link rel="icon" type="image/png" href="{{site.url}}/img/favicons/favicon.png">
 		<link rel="shortcut icon" href="{{site.url}}/img/favicons/favicon.ico">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="search">
 					<form method="get" action="{{searchUrl}}" class="searchbox">
-						<a href="#" onclick="document.forms[0].submit();return false;" title="Search">
+						<a id="doSearch" href="#" title="Search">
 							{{svg "img/icons/search.svg" class="icon search"}}
 						</a>
 						<input type="text" placeholder="Search..." name="q" value="{{searchTerm}}">
@@ -70,26 +70,26 @@
 				<div class="tools">
 					{{#unless file}}
 					<div class="asset-filters">
-						<div class="mobile-dropdown" onclick="methods.toggleFilterDD(this);">Filters{{svg "img/icons/small-arrow.svg" class="filters-arrow"}}</div>
-						<div class="filter filter-on filter-folder" data-type="folder" data-index="0" onclick="methods.filterToggle(this, 'folder', 0)">
+						<div class="mobile-dropdown">Filters{{svg "img/icons/small-arrow.svg" class="filters-arrow"}}</div>
+						<div class="filter filter-on filter-folder" data-type="folder" data-index="0">
 							<div class="filter-icon"></div>
 							<div class="filter-label small-font">Folders</div>
 						</div>
-						<div class="filter filter-on filter-document" data-type="document" data-index="1" onclick="methods.filterToggle(this, 'document', 1)">
+						<div class="filter filter-on filter-document" data-type="document" data-index="1">
 							<div class="filter-icon"></div>
 							<div class="filter-label small-font">documents</div>
 						</div>
-						<div class="filter filter-on filter-image" data-type="image" data-index="2" onclick="methods.filterToggle(this, 'image', 2)">
+						<div class="filter filter-on filter-image" data-type="image" data-index="2">
 							<div class="filter-icon"></div>
 							<div class="filter-label small-font">Images</div>
 						</div>
-						<div class="filter filter-on filter-video" data-type="video" data-index="3" onclick="methods.filterToggle(this, 'video', 3)">
+						<div class="filter filter-on filter-video" data-type="video" data-index="3">
 							<div class="filter-icon"></div>
 							<div class="filter-label small-font">Video/Audio</div>
 						</div>
 					</div>
+					{{#if canDownloadAll}}
 					<div class="download-all">
-						{{#if canDownloadAll}}
 							{{#if downloadAllReady}}
 							<a href="{{downloadAllUrl}}" title="Download All">
 								{{svg "img/icons/download.svg" class="icon"}}
@@ -101,11 +101,23 @@
 								<div class="download-label small-font">Download All <br/>(Preparing)</div>
 							</a>
 							{{/if}}
-						{{/if}}
 					</div>
+					{{/if}}
 
 					{{else}}
-					<div class="close-file" onclick="window.history.back();">
+					{{#if canDownloadOriginals}}
+					<ul>
+						<a href="{{file.url}}">
+							<li id="view-download" class="view-topbar-button">
+								<div class="topbar-button-label">Download
+									<span class="small-font">{{friendlysize file.fileSize}}</span>
+								</div>
+								{{svg "img/icons/download.svg" class="icon"}}
+							</li>
+						</a>
+					</ul>
+					{{/if}}
+					<div class="close-file">
 						{{svg "img/icons/close.svg" class="icon icon-hover"}}
 					</div>
 					{{/unless}}
@@ -127,7 +139,7 @@
 
 		{{#if canDownloadAll}}
 		{{#unless downloadAllReady}}
-			<script type="text/JavaScript">
+			<script type="text/javascript" nonce="{{scriptNonce}}">
 
 				var dlcheck = setInterval(function(){
 					var request = new XMLHttpRequest();
@@ -149,7 +161,105 @@
 		{{/unless}}
 		{{/if}}
 
-		<script type="text/JavaScript">
+	<script type="text/javascript" nonce="{{scriptNonce}}">
+		var searchTag = document.getElementById("doSearch");
+		var i = 0;
+		var curNode = null;
+		if (searchTag) {
+			searchTag.onclick = function() {
+				document.forms[0].submit();
+				return false;
+			}
+		}
+		var viewPrev = document.getElementById("view-file-left-arrow");
+		if (viewPrev) {
+			viewPrev.onclick = function() {
+				methods.prevAsset();
+			}
+		}
+		var viewNext = document.getElementById("view-file-right-arrow");
+		if (viewNext) {
+			viewNext.onclick = function() {
+				methods.nextAsset();
+			}
+		}
+		var dropDowns = document.getElementsByClassName("mobile-dropdown");
+		if (dropDowns && dropDowns.length) {
+			for (i =0; i<dropDowns.length; i++) {
+				curNode=dropDowns.item(i);
+				curNode.onclick = function(node) {
+					methods.toggleFilterDD(node);
+				};
+			}
+		}
+		var closers = document.getElementsByClassName("close-file");
+		if (closers && closers.length) {
+			for (i =0; i<closers.length; i++) {
+				curNode=closers.item(i);
+				curNode.onclick = function() {
+					window.history.back();
+				};
+			}
+		}
+		var viewClosers = document.getElementsByClassName("view-close");
+		if (viewClosers && viewClosers.length) {
+			for (var i =0; i<viewClosers.length; i++) {
+				curNode=viewClosers.item(i);
+				curNode.onclick = function() {
+					var s = document.body.scrollTop;
+					window.location.hash = '';
+					document.body.scrollTop = s;
+				};
+			}
+		}
+		var filters = document.getElementsByClassName("filter");
+		if (filters && filters.length) {
+			var bindFn = function(node) {
+				var type = node.getAttribute("data-type");
+				var index = node.getAttribute("data-index");
+				node.onclick = function() {
+					methods.filterToggle(node, type, index);
+				};
+			};
+			for (i =0; i<filters.length; i++) {
+				curNode=filters.item(i);
+				bindFn(curNode);
+			}
+		}
+		var linkTags = document.querySelectorAll(`[data-link]`);
+		if (linkTags && linkTags.forEach) {
+			linkTags.forEach(function(node){
+				var linkAttr = node.getAttribute("data-link");
+				if(!linkAttr) {
+					return;
+				}
+				node.onclick = function() {
+					window.location = linkAttr;
+				};
+			});
+		}
+		var bgTags = document.querySelectorAll(`[data-background]`);
+		if(bgTags && bgTags.forEach) {
+			bgTags.forEach(function(node){
+				var bgAttr = node.getAttribute("data-background");
+				if(!bgAttr) {
+					return;
+				}
+				node.style.backgroundImage = "url('"+bgAttr+"')";
+			});
+		}
+		var hashTags = document.querySelectorAll(`[data-sethash]`);
+		if(hashTags && hashTags.forEach) {
+			hashTags.forEach(function(node){
+				node.onclick = function() {
+					var hashAttr = node.getAttribute("data-sethash");
+					if(!hashAttr) {
+						return;
+					}
+					window.location.hash = hashAttr;
+				};
+			});
+		}
 			var currLoc;
 			{{#if folder}}
 				{{#if searchIsEmpty}}
