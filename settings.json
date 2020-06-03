@@ -27,7 +27,7 @@
 	},
 	"customColors": [
 	],
-	"csp": "default-src: 'none'; style-src 'self' DYN_STYLESRC; script-src 'self' DYN_SCRIPTSRC; img-src 'self' DYN_IMGSRC; ",
+	"csp": "default-src: 'none'; style-src 'self' DYN_STYLESRC; script-src 'self' DYN_SCRIPTSRC; img-src 'self' data: DYN_IMGSRC; ",
 	"serveJson": true,
 	"devMode": false
 }
