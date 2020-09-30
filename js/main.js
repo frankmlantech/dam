@@ -165,7 +165,9 @@ var methods = {
 				}
 			}
 		}
-
+		var request = new XMLHttpRequest();
+		request.open('POST', asset.logViewUrl, false);
+		request.send(null);
 	},
 
 
