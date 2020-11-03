@@ -1,0 +1,18 @@
+title:"Login"
+---
+
+{{#if loginError }}
+<p>Invalid Username/password</p>
+{{/if}}
+
+<form method="post" action="{{loginUrl}}">
+	<div><div class="text-input"><input type="text" name="username" placeholder="Username"></div></div>
+	<br>
+	<div><div class="text-input"><input type="password" name="password" placeholder="Password"></div></div>
+	<br>
+	<div><a href="#" onclick="document.forms[0].submit();return false;" class="button">SEND</a></div>
+</form>
+
+{{#if samlEnabled }}
+<div><a href="{{ssoUrl}}" class="button">Single Sign-On</a></div>
+{{/if}}
