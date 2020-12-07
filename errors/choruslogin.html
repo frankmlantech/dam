@@ -5,12 +5,12 @@ title:"Login"
 <p>Invalid Username/password</p>
 {{/if}}
 
-<form method="post" action="{{loginUrl}}">
+<form name="loginform" method="post" action="{{loginUrl}}">
 	<div><div class="text-input"><input type="text" name="username" placeholder="Username"></div></div>
 	<br>
 	<div><div class="text-input"><input type="password" name="password" placeholder="Password"></div></div>
 	<br>
-	<div><a href="#" onclick="document.forms[0].submit();return false;" class="button">SEND</a></div>
+	<div><a href="#" data-submitform="loginform" class="button">SEND</a></div>
 </form>
 
 {{#if samlEnabled }}
