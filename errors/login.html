@@ -6,10 +6,10 @@ title:"You have been signed out"
 
 <p>Please enter your email address and we'll send you a new sign-in link.</p>
 
-<form method="post" action="{{loginUrl}}">
+<form name="loginform" method="post" action="{{loginUrl}}">
 	<div><div class="text-input"><input type="text" name="email" placeholder="Email address"></div></div>
 	<br>
-	<div><a href="#" onclick="document.forms[0].submit();return false;" class="button">SEND</a></div>
+	<div><a href="#" data-submitform="loginform" class="button">SEND</a></div>
 </form>
 
 {{else}}
