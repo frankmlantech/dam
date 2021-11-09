@@ -27,8 +27,8 @@ title:"Chorus"
 					<a href="{{site.url}}"><img src="{{site.url}}logo"></a>
 				</div>
 				<div class="search">
-					<form method="get" action="{{searchUrl}}" class="searchbox">
-						<a href="#" onclick="document.forms[0].submit();return false;" title="Search">
+					<form name="searchform" method="get" action="{{searchUrl}}" class="searchbox">
+						<a href="#" data-submitform="searchform" title="Search">
 							{{svg "img/icons/search.svg" class="icon search"}}
 						</a>
 						<input type="text" placeholder="Search..." name="q" value="{{searchTerm}}">
@@ -71,5 +71,23 @@ title:"Chorus"
 
 		</div>
 
+		<script type="text/javascript" nonce="{{scriptNonce}}">
+			function foreachNode(selector, callback) {
+				var matchingTags = document.querySelectorAll(selector);
+				if(matchingTags) {
+					matchingTags.forEach(callback);
+				}
+			}
+			foreachNode("[data-submitform]", function(node) {
+				var formAttr = node.getAttribute("data-submitform");
+				if(!formAttr) {
+					return;
+				}
+				node.onclick = function() {
+					document.forms[formAttr].submit();
+					return false;
+				};
+			});
+		</script>
 	</body>
 </html>
