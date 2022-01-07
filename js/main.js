@@ -29,11 +29,11 @@ var helpers = {
 
 
 	formatBytes: function(bytes){
-		if(bytes == 0) return '0 Bytes';
+		if(bytes == 0) return '';
 		var k = 1000,
 			sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 			i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+		return '(' + parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i] + ')';
 	},
 
 
@@ -109,23 +109,40 @@ var methods = {
 		//update file preview/view
 		if(asset.isVideo || asset.isAudio){
 			var autoplay = '';
-			if(/iPad|iPhone|iPod/.test(navigator.userAgent)) autoplay = 'onloadstart="this.style.opacity= 1; helpers.viewFile[0].children[0].style.opacity = 0; methods.resizeAsset.video();"';
-			helpers.filePreview.innerHTML = '<video id="preview-video" '+ autoplay +' controls poster='+ asset.thumbUrl +' class="view-file-video" onloadeddata="this.style.opacity= 1; helpers.viewFile[0].children[0].style.opacity = 0; methods.resizeAsset.video();"><source src='+ asset.h264StreamUrl +' type="video/mp4"></video>';
+			helpers.filePreview.innerHTML = '<video id="preview-video" controls controlsList="nodownload" poster='+ asset.thumbUrl +' class="view-file-video"><source src='+ asset.h264StreamUrl +' type="video/mp4"></video>';
+			var videoEl = document.getElementById('preview-video');
+			if (videoEl) {
+				videoEl.addEventListener('contextmenu', function (e) { e.preventDefault(); }, false);
+				videoEl.onloadeddata = function() { this.style.opacity= 1; helpers.viewFile[0].children[0].style.opacity = 0; methods.resizeAsset.video(); };
+				if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+					videoEl.onloadstart = function () { this.style.opacity= 1; helpers.viewFile[0].children[0].style.opacity = 0; methods.resizeAsset.video(); };
+				}
+			}
 		} else if(asset.isDocument && asset.isMultiPage){
 			var pages = '';
 			for(var i = 0; i < asset.pages.length; i++){
-				pages = pages + '<img src="'+ asset.pages[i].thumbUrl +'" onload="helpers.viewFile[0].children[0].style.opacity = 0;"/>'
+				pages = pages + '<img id="document-page-'+i+'" src="'+ asset.pages[i].thumbUrl +'"/>'
 			}
 			helpers.filePreview.innerHTML = '<div class="view-file-document">'+ pages +'</div>';
+			for(var i = 0; i < asset.pages.length; i++){
+				var pageEl = document.getElementById('document-page-'+i);
+				if (pageEl) {
+					pageEl.onload = function() { helpers.viewFile[0].children[0].style.opacity = 0; };
+				}
+			}
 		} else {
 			helpers.viewFile[0].setAttribute("data-src", asset.thumbUrl);
 			helpers.imageLoading(helpers.viewFile);
 		}
 
 		//update download and preview links
-		helpers.fileDownload.parentNode.href = asset.url;
-		helpers.fileDownload.children[0].innerHTML = 'Download <span class="small-font">(' + helpers.formatBytes(asset.fileSize) + ')</span>';
-		helpers.fileOpen.parentNode.href = asset.previewUrl;
+		if (helpers.fileDownload && helpers.fileDownload.parentNode) {
+			helpers.fileDownload.parentNode.href = asset.url;
+			helpers.fileDownload.children[0].innerHTML = 'Download <span class="small-font">' + helpers.formatBytes(asset.fileSize) + '</span>';
+		}
+		if (helpers.fileOpen && helpers.fileOpen.parentNode) {
+			helpers.fileOpen.parentNode.href = asset.previewUrl;
+		}
 
 		//update metadata and download link
 		for(var metakey in asset.metadata) {
@@ -149,7 +166,9 @@ var methods = {
 				}
 			}
 		}
-
+		var request = new XMLHttpRequest();
+		request.open('POST', asset.logViewUrl, true);
+		request.send(null);
 	},
 
 
