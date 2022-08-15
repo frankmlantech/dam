@@ -1,4 +1,10 @@
 
 <div class="preview">
-	{{> (file.fileType)}}
+	{{#if file.isGeneric}}
+		<div class="generic-file">
+			<img src="{{file.thumbUrl}}" alt="generic file">
+		</div>
+	{{else}}
+		{{> (file.fileType)}}
+	{{/if}}
 </div>

@@ -225,6 +225,13 @@ $topbar-height: 100px;
 				background-color: #fff;
 			}
 		}
+
+		.generic-file {
+			height: calc(100vh - 260px);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 
 	.invalid{
